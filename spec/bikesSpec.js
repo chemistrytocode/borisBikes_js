@@ -5,6 +5,7 @@ describe("Bikes", function() {
     bike = new Bikes();
   });
 
+
   it("Should initialize with working set to true", function() {
     expect(bike.working()).toEqual(true);
   })

@@ -5,9 +5,10 @@ describe("DockingStation", function() {
 
   beforeEach(function() {
     dockingStation = new DockingStation();
-    workingBike = new Bikes();
-    brokenBike = new Bikes();
-    brokenBike.reportBroken();
+    brokenBike = jasmine.createSpyObj('brokenBike', ['working']);
+    workingBike = jasmine.createSpyObj('workingBike', ['working']);
+    brokenBike.working.and.returnValue(false);
+    workingBike.working.and.returnValue(true);
   });
 
   describe("#Capacity", function() {
@@ -41,13 +42,11 @@ describe("DockingStation", function() {
 
   describe("#full", function() {
 
-    // it("Should prevent a bike from docking if station is at max capacity", function() {
-    //   spyOn(dockingStation, 'capacity').and.returnValue(20);
-    //   expect(function() { dockingStation.addBike(workingBike)}).toThrowError("Docking Station is at max capacity")
-    //   expect(dockingStation.addBike(workingBike)).toEqual(1);
-    // });
+    it("Should prevent a bike from docking if station is at max capacity", function() {
+      spyOn(dockingStation, 'maxCapacity').and.returnValue(true);
+      expect(function() { dockingStation.addBike(workingBike)}).toThrowError("Docking Station is at max capacity")
+    });
 
   });
-
 
 }); //End of DockingStation

@@ -16,6 +16,7 @@ DockingStation.prototype.bikes = function() {
 }
 
 DockingStation.prototype.addBike = function(bike) {
+  if (this.maxCapacity()) { throw new Error("Docking Station is at max capacity") }
   this._bikes.push(bike);
 }
 
