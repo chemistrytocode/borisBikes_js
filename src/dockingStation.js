@@ -30,3 +30,7 @@ DockingStation.prototype.workingBikes = function() {
   // var workingBikes = allBikes.filter(function(bike) { return bike.working() });
   return workingBikes;
 }
+
+DockingStation.prototype.releaseBike = function() {
+  return this._bikes.shift();
+}

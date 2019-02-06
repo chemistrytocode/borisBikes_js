@@ -11,7 +11,7 @@ describe("DockingStation", function() {
     workingBike.working.and.returnValue(true);
   });
 
-  describe("#Capacity", function() {
+  describe("#capacity", function() {
 
   it("Should initialize with a default capacity of 20", function() {
     expect(dockingStation.capacity()).toEqual(20);
@@ -29,24 +29,24 @@ describe("DockingStation", function() {
       expect(dockingStation.bikes().length).toEqual(1);
     });
 
-  });
-
-  describe("#workingBikes", function() {
     it("Should return an array of bikes that aren't broken", function() {
       dockingStation.addBike(workingBike);
       dockingStation.addBike(brokenBike);
       workingBikes = dockingStation.workingBikes();
       expect(workingBikes.length).toEqual(1);
     });
-  });
-
-  describe("#full", function() {
 
     it("Should prevent a bike from docking if station is at max capacity", function() {
       spyOn(dockingStation, 'maxCapacity').and.returnValue(true);
       expect(function() { dockingStation.addBike(workingBike)}).toThrowError("Docking Station is at max capacity")
     });
-
   });
 
+  describe("#releaseBike", function() {
+
+  it("Should release a bike fromt he dockingStation", function() {
+    dockingStation.addBike(workingBike);
+    expect(dockingStation.releaseBike()).toEqual(workingBike);
+  });
+  });
 }); //End of DockingStation
