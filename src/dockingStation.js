@@ -36,13 +36,16 @@ DockingStation.prototype.workingBikes = function () {
 
 DockingStation.prototype.releaseBike = function () {
   if (this.empty()) { throw new Error('Docking Station is empty') }
-  var allBikes = this.bikes() // Array containing all Bikes
-  var workingBikes = this.workingBikes() // Array containing working bikes
+  var workingBikes = this.workingBikes()
   if (workingBikes.length === 0) { throw new Error('No working bikes left') }
-  var releasedBike = workingBikes.shift() // Released working bike
-  var index = allBikes.indexOf(releasedBike) // Index of released bike in all bike array
+  this.updateBikes(releasedBike = workingBikes.shift())
+  return releasedBike
+}
+
+DockingStation.prototype.updateBikes = function(releasedBike) {
+  var allBikes = this.bikes()
+  var index = allBikes.indexOf(releasedBike)
   if (index > -1) {
-    allBikes.splice(index, 1) // Removed bike from all bikes array.
+    allBikes.splice(index, 1)
   }
-  return releasedBike // Return bike.
 }
