@@ -6,6 +6,10 @@ Bikes.prototype.working = function () {
   return this._working
 }
 
+Bikes.prototype.broken = function() {
+  this._working === false
+}
+
 Bikes.prototype.reportBroken = function () {
   this._working = false
 }

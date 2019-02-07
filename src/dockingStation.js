@@ -54,8 +54,3 @@ DockingStation.prototype.updateBikes = function(releasedBike) {
     allBikes.splice(index, 1)
   }
 }
-
-DockingStation.prototype.collectBrokenBikes = function() {
-  updatedBikes = this.bikes().filter(bike => bike.working())
-  this._bikes = updatedBikes;
-}
