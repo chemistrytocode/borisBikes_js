@@ -34,6 +34,11 @@ DockingStation.prototype.workingBikes = function () {
   return workingBikes
 }
 
+DockingStation.prototype.brokenBikes = function () {
+  var brokenBikes = this.bikes().filter(bike => !bike.working())
+  return brokenBikes
+}
+
 DockingStation.prototype.releaseBike = function () {
   if (this.empty()) { throw new Error('Docking Station is empty') }
   var workingBikes = this.workingBikes()
@@ -48,4 +53,9 @@ DockingStation.prototype.updateBikes = function(releasedBike) {
   if (index > -1) {
     allBikes.splice(index, 1)
   }
+}
+
+DockingStation.prototype.collectBrokenBikes = function() {
+  updatedBikes = this.bikes().filter(bike => bike.working())
+  this._bikes = updatedBikes;
 }

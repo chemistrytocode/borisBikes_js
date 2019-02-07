@@ -55,4 +55,20 @@ describe('DockingStation', function () {
       expect(function () { dockingStation.releaseBike() }).toThrowError('Docking Station is empty')
     })
   })
+
+  describe('#brokenBike', function () {
+    it('Should return an array of all broken bikes', function () {
+      dockingStation.addBike(workingBike)
+      dockingStation.addBike(brokenBike)
+      expect(dockingStation.brokenBikes().length).toEqual(1)
+    })
+    it('Should remove all brokenBikes from the allBikes array', function () {
+      dockingStation.addBike(workingBike)
+      dockingStation.addBike(brokenBike)
+      dockingStation.addBike(brokenBike)
+      dockingStation.collectBrokenBikes()
+      expect(dockingStation.bikes().length).toEqual(1)
+    })
+
+  })
 }) // End of DockingStation
